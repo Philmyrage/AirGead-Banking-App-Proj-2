@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AirGead-Banking-App-Proj-2", "AirGead-Banking-App-Proj-2.vcxproj", "{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}.Debug|x64.ActiveCfg = Debug|x64
+		{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}.Debug|x64.Build.0 = Debug|x64
+		{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}.Debug|x86.ActiveCfg = Debug|Win32
+		{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}.Debug|x86.Build.0 = Debug|Win32
+		{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}.Release|x64.ActiveCfg = Release|x64
+		{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}.Release|x64.Build.0 = Release|x64
+		{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}.Release|x86.ActiveCfg = Release|Win32
+		{E0A3918C-8E3F-4CA5-89F4-07D27B4CEB73}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70D3D0A1-5CF6-45C5-8DB0-4FB6C26D4997}
+	EndGlobalSection
+EndGlobal

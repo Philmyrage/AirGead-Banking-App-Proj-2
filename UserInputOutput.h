@@ -19,12 +19,12 @@ public:
 	
 	const void PrintInvestmentReport(const class CompoundInvestementModel* const investmentModel);
 
+	//returns true if the user enters 'y' false for anything else.
 	const bool runAgain();
 protected:
 
 
 private:
-
 
 };
 

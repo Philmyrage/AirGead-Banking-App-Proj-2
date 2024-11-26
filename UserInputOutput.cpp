@@ -1,5 +1,6 @@
 #include "UserInputOutput.h"
 #include <iostream>
+#include <format>
 
 UserInput* UserInputOutput::GetUserInput()
 {
@@ -22,7 +23,10 @@ UserInput* UserInputOutput::GetUserInput()
 
 const void UserInputOutput::PrintInvestmentReport(const CompoundInvestementModel* const investmentModel)
 {
-    
+    //Find the max character length of all the values so we can set the spacing in our formatted table.
+    int maxValueLength = 5;
+
+
 }
 
 const bool UserInputOutput::runAgain()
@@ -30,7 +34,7 @@ const bool UserInputOutput::runAgain()
     char response = 'f';
     std::cout << "Run another model? y/n:	";
     std::cin >> response;
-    return response != 'y';
+    return response == 'y';
 }
 
 const void UserInputOutput::printMessage(const std::string& message)

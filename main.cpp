@@ -26,7 +26,7 @@ int main()
 
 
 		 //Ask to run again
-		runAgain = !InputOutput->runAgain();
+		runAgain = InputOutput->runAgain();
 	}
 
 

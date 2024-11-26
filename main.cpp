@@ -24,8 +24,9 @@ int main()
 		 InputOutput->printMessage("Press any key to contiune. . .\n");
 		 _getch();
 
+
 		 //Ask to run again
-		runAgain = InputOutput->runAgain();
+		runAgain = !InputOutput->runAgain();
 	}
 
 

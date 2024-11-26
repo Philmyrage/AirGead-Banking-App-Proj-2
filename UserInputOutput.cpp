@@ -22,6 +22,14 @@ const void UserInputOutput::PrintInvestmentReport(const CompoundInvestementModel
     
 }
 
+const bool UserInputOutput::runAgain()
+{
+    char response = 'f';
+    std::cout << "Run another model? y/n:	";
+    std::cin >> response;
+    return response != 'y';
+}
+
 const void UserInputOutput::PrintMessage(const std::string& message)
 {
     std::cout << message;

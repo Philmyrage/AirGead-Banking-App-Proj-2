@@ -25,10 +25,7 @@ int main()
 		 _getch();
 
 		 //Ask to run again
-		 char response = 'f';
-		 std::cout << "Run another model? y/n:	";
-		 std::cin >> response;
-		 if(response != 'y') runAgain = false;
+		runAgain = InputOutput->runAgain();
 	}
 
 

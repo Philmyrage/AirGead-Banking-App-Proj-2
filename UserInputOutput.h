@@ -19,6 +19,7 @@ public:
 	
 	const void PrintInvestmentReport(const class CompoundInvestementModel* const investmentModel);
 
+	const bool runAgain();
 protected:
 
 

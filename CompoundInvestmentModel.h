@@ -29,6 +29,7 @@ public:
 	inline void setAnnualIntrestRate(unsigned amount){annualIntrestRate = amount;}
 	inline void setNumOfYears(unsigned short amount){numOfYears = amount;}
 
+
 protected:
 
 private:

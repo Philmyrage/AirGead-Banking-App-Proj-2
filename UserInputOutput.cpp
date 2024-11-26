@@ -5,13 +5,14 @@ UserInput* UserInputOutput::GetUserInput()
 {
     UserInput* userInput = new UserInput;
 
-    PrintMessage("Initial Investment Amount:  ");
+
+    printMessage("Initial Investment Amount:  ");
     std::cin >> userInput->iniInvestAmount;
-    PrintMessage("Monthly Deposit:  ");
+    printMessage("Monthly Deposit:  ");
     std::cin >> userInput->monthlyDeposit;
-    PrintMessage("Annual Interest:  ");
+    printMessage("Annual Interest:  ");
     std::cin >> userInput->annualIntrestRate;
-    PrintMessage("Number of years:  ");
+    printMessage("Number of years:  ");
     std::cin >> userInput->numOfYears;
 
     return userInput;
@@ -30,7 +31,7 @@ const bool UserInputOutput::runAgain()
     return response != 'y';
 }
 
-const void UserInputOutput::PrintMessage(const std::string& message)
+const void UserInputOutput::printMessage(const std::string& message)
 {
     std::cout << message;
 }

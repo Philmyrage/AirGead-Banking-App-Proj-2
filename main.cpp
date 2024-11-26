@@ -21,7 +21,7 @@ int main()
 											           input->annualIntrestRate,
 													   input->numOfYears);
 
-		 InputOutput->PrintMessage("Press any key to contiune. . .\n");
+		 InputOutput->printMessage("Press any key to contiune. . .\n");
 		 _getch();
 
 		 //Ask to run again

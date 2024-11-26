@@ -13,7 +13,7 @@ class UserInputOutput
 {
 public:
 	
-	const void PrintMessage(const std::string& message);
+	const void printMessage(const std::string& message);
 	
 	UserInput* GetUserInput();
 	

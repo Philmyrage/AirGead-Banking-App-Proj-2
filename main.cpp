@@ -9,21 +9,21 @@ int main()
 
 	UserInputOutput* InputOutput = new UserInputOutput;
 	UserInput* input = nullptr;
-	CompoundInvestmentModel* investmentModel = nullptr;
 	bool runAgain = true;
 
 	while (runAgain)
 	{
 		 input = InputOutput->GetUserInput();
 
-		 investmentModel = new CompoundInvestmentModel(input->iniInvestAmount, 
+		 const CompoundInvestmentModel* investmentModel = new CompoundInvestmentModel(input->iniInvestAmount,
 													   input->monthlyDeposit,
 											           input->annualIntrestRate,
 													   input->numOfYears);
 
-		 InputOutput->printMessage("Press any key to contiune. . .\n");
+		 InputOutput->printMessage("Press any key to continue. . .\n");
 		 _getch();
 
+		 InputOutput->PrintInvestmentReport(investmentModel);
 
 		 //Ask to run again
 		runAgain = InputOutput->runAgain();

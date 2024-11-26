@@ -1,6 +1,10 @@
 #include "UserInputOutput.h"
+#include "CompoundInvestmentModel.h"
+
 #include <iostream>
 #include <format>
+#include <map>
+#include <string>
 
 UserInput* UserInputOutput::GetUserInput()
 {
@@ -21,11 +25,14 @@ UserInput* UserInputOutput::GetUserInput()
     return userInput;
 }
 
-const void UserInputOutput::PrintInvestmentReport(const CompoundInvestementModel* const investmentModel)
+const void UserInputOutput::PrintInvestmentReport(const CompoundInvestmentModel* const investmentModel)
 {
-    //Find the max character length of all the values so we can set the spacing in our formatted table.
-    int maxValueLength = 5;
-
+    std::cout << "\n";
+    std::cout << std::format("{:=^{}}", " Balance and Interest Without Additional Monthly Deposits ", 100) << std::endl;
+    std::cout << std::format("{:=>{}}", "", 100) << std::endl;
+    std::cout << std::format("{: <{}}","Year", 33);
+    std::cout << std::format("{: ^{}}", "Year End Balance", 33);
+    std::cout << std::format("{: >{}}", "Year End Earned Interest", 33) << std::endl << std::endl;
 
 }
 

@@ -15,7 +15,7 @@ int main()
 	{
 		 input = InputOutput->GetUserInput();
 
-		 const CompoundInvestmentModel* investmentModel = new CompoundInvestmentModel(input->iniInvestAmount,
+		 CompoundInvestmentModel* investmentModel = new CompoundInvestmentModel(input->iniInvestAmount,
 													   input->monthlyDeposit,
 											           input->annualIntrestRate,
 													   input->numOfYears);

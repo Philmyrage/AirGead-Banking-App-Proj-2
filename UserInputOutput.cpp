@@ -25,7 +25,7 @@ UserInput* UserInputOutput::GetUserInput()
     return userInput;
 }
 
-const void UserInputOutput::PrintInvestmentReport(const CompoundInvestmentModel* const investmentModel)
+const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const investmentModel)
 {
     std::cout << "\n";
     std::cout << std::format("{:=^{}}", " Balance and Interest Without Additional Monthly Deposits ", 100) << std::endl;
@@ -37,6 +37,16 @@ const void UserInputOutput::PrintInvestmentReport(const CompoundInvestmentModel*
     std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
     std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
 
+
+
+    //Loop the number of years adding rows with the associated data...
+    for (int i = 1; i <= investmentModel->getNumOfYears(); i++)
+    {
+        std::cout << std::format("{: <{}}", i, 33);
+
+        //once row is complete start new row.
+        std::cout << std::endl << std::endl;
+    }
 }
 
 const bool UserInputOutput::runAgain()

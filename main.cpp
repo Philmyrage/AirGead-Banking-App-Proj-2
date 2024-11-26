@@ -1,4 +1,5 @@
 #include<iostream>
+#include<conio.h>
 
 #include "CompoundInvestmentModel.h"
 #include "UserInputOutput.h"
@@ -21,7 +22,7 @@ int main()
 													   input->numOfYears);
 
 		 InputOutput->PrintMessage("Press any key to contiune. . .\n");
-		 std::cin;
+		 _getch();
 
 		 //Ask to run again
 		 char response = 'f';

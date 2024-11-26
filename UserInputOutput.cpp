@@ -30,9 +30,12 @@ const void UserInputOutput::PrintInvestmentReport(const CompoundInvestmentModel*
     std::cout << "\n";
     std::cout << std::format("{:=^{}}", " Balance and Interest Without Additional Monthly Deposits ", 100) << std::endl;
     std::cout << std::format("{:=>{}}", "", 100) << std::endl;
+
+    //These lines are dividing the default space of 100 between them since they are on the same line...
     std::cout << std::format("{: <{}}","Year", 33);
     std::cout << std::format("{: ^{}}", "Year End Balance", 33);
-    std::cout << std::format("{: >{}}", "Year End Earned Interest", 33) << std::endl << std::endl;
+    std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
+    std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
 
 }
 

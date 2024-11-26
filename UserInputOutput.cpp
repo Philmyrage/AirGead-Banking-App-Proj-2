@@ -5,6 +5,8 @@ UserInput* UserInputOutput::GetUserInput()
 {
     UserInput* userInput = new UserInput;
 
+    printMessage("***********************************\n");
+    printMessage("************ Data Input ***********\n\n");
 
     printMessage("Initial Investment Amount:  ");
     std::cin >> userInput->iniInvestAmount;

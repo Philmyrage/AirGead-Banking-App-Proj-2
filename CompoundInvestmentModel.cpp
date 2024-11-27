@@ -1,11 +1,13 @@
 #include "CompoundInvestmentModel.h"
 
+#include <cmath>
+
 void CompoundInvestmentModel::calculateInvestment()
 {
 	for (int i = 0; i < getNumOfYears(); i++)
 	{
 		//if its the first iteration calculate on the initial amount otherwise use the previous year.
-		int amount = (i == 0) ? iniInvestAmount : yearEndBalanceAmounts.at(i);
+		int amount = (i == 0) ? iniInvestAmount : yearEndBalanceAmounts.at(i - 1);
 
 		yearEndBalanceAmounts.at(i) = calculateYearEndBalance(amount);
 		yearEndBalanceWithOutDeposits.at(i) = calculateYearEndBalanceWithoutDeposit(amount);

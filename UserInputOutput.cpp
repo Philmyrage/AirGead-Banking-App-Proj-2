@@ -37,23 +37,27 @@ const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const
     std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
     std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
 
+    std::vector<double> yrEndBalanceWOutDeposit = investmentModel->getEndBalanceWithoutDeposits();
+    std::vector<double> endEarnedInterestWOutDepoist = investmentModel->getEndEarnedInterestAmtWoutDeposits();
+
     //Loop the number of years adding rows with the associated data...
-    for (int i = 1; i <= investmentModel->getNumOfYears(); i++)
+    for (int i = 0; i < investmentModel->getNumOfYears(); i++)
     {
         
         //Year
-        std::cout << std::format("{: <{}}", i, 33);
+        std::cout << std::format("{: <{}}", i + 1, 33);
 
         //Year End Balance
-        //std::cout << std::format("{: ^{}}", "$" + std::to_string(), 33);
+        std::cout << std::format("{: ^{}}", "$" + std::to_string(yrEndBalanceWOutDeposit.at(i)), 33);
 
         //Year End Earned Interest
-        //std::cout << std::format("{: >{}}", "$" + std::to_string(), 34);
+        std::cout << std::format("{: >{}}", "$" + std::to_string(endEarnedInterestWOutDepoist.at(i)), 34);
         
         //once row is complete start new row.
         std::cout << std::endl << std::endl;
     }
 
+    std::cout << std::format("{:->{}}", "", 100) << std::endl;
     std::cout << std::format("{: ^{}}", "Closing Balance: " + std::to_string(100), 100) << std::endl;
 }
 

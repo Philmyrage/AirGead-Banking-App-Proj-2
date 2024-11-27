@@ -19,23 +19,23 @@ public:
 	}
 
 	//Getters/Setters
-	inline unsigned getIniinvestAmount(){return iniInvestAmount;}
-	inline unsigned getMonthlyDepost(){return monthlyDeposit;}
-	inline unsigned getAnnualIntrestRate(){return annualIntrestRate;}
+	inline double getIniinvestAmount(){return iniInvestAmount;}
+	inline double getMonthlyDepost(){return monthlyDeposit;}
+	inline double getAnnualIntrestRate(){return annualIntrestRate;}
 	inline short getNumOfYears(){return numOfYears;}
 
-	inline void setIniInvestAmount(unsigned amount){iniInvestAmount = amount;}
-	inline void setMonthlyDeposit(unsigned amount){monthlyDeposit = amount;}
-	inline void setAnnualIntrestRate(unsigned amount){annualIntrestRate = amount;}
+	inline void setIniInvestAmount(double amount){iniInvestAmount = amount;}
+	inline void setMonthlyDeposit(double amount){monthlyDeposit = amount;}
+	inline void setAnnualIntrestRate(double amount){annualIntrestRate = amount;}
 	inline void setNumOfYears(unsigned short amount){numOfYears = amount;}
 
 
 protected:
 
 private:
-	unsigned iniInvestAmount;
-	unsigned monthlyDeposit;
-	unsigned annualIntrestRate;
+	double iniInvestAmount;
+	double monthlyDeposit;
+	double annualIntrestRate;
 	unsigned short numOfYears;
 };
 

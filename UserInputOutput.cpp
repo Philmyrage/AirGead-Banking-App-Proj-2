@@ -38,12 +38,22 @@ const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const
     std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
 
 
-
     //Loop the number of years adding rows with the associated data...
     for (int i = 1; i <= investmentModel->getNumOfYears(); i++)
     {
+        
+        double yearEndBalance = 0;
+        double YearEndEarnedInterest = 0;
+        
+        //Year
         std::cout << std::format("{: <{}}", i, 33);
 
+        //Year End Balance
+        std::cout << std::format("{: ^{}}", i, 33);
+
+        //Year End Earned Interest
+        std::cout << std::format("{: >{}}", "$" + std::to_string(i), 34);
+        
         //once row is complete start new row.
         std::cout << std::endl << std::endl;
     }

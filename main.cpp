@@ -20,8 +20,11 @@ int main()
 											           input->annualIntrestRate,
 													   input->numOfYears);
 
+		investmentModel->calculateInvestment();
+
 		 InputOutput->printMessage("Press any key to continue. . .\n");
 		 _getch();
+
 
 		 InputOutput->PrintInvestmentReport(investmentModel);
 

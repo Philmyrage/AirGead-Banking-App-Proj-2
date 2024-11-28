@@ -33,6 +33,8 @@ public:
 	inline double getAnnualIntrestRate(){return annualIntrestRate;}
 	inline unsigned getNumOfYears(){return numOfYears;}
 
+	inline double getClosingBalance(){return closingBalance;}
+
 	inline std::vector<double> getYearEndBalanceAmounts(){return yearEndBalanceAmounts;}
 	inline std::vector<double> getEarnedIntrestAmounts(){return endEarnedInterestAmounts;}
 	inline std::vector<double> getEndBalanceWithoutDeposits(){return yearEndBalanceWithOutDeposits;}
@@ -60,6 +62,9 @@ private:
 	unsigned numOfYears;
 
 	//Calculated Amounts
+
+	double closingBalance = 0.0;
+
 	std::vector<double> yearEndBalanceAmounts;
 	std::vector<double> endEarnedInterestAmounts;
 	std::vector<double> endEarnedInterestAmtWoutDeposits;
@@ -74,5 +79,9 @@ private:
 
 	//this function returns the Earned compounded interest of the amount given.
 	double calculateEndEarnedInterest(double amount, bool withDeposit);
+
+	double calculateClosingBalance();
+
+	double calculateCompoundInterest(int lengthOfInvestment);
 };
 

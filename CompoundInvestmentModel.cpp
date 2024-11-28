@@ -4,15 +4,17 @@
 
 void CompoundInvestmentModel::calculateInvestment()
 {
-	for (int i = 0; i < getNumOfYears(); i++)
+	for (int i = 1; i <= getNumOfYears(); i++)
 	{
-		//if its the first iteration calculate on the initial amount otherwise use the previous year.
-		int amount = (i == 0) ? iniInvestAmount : yearEndBalanceAmounts.at(i - 1);
+		////if its the first iteration calculate on the initial amount otherwise use the previous year.
+		//int amount = (i == 0) ? iniInvestAmount : yearEndBalanceAmounts.at(i - 1);
 
-		yearEndBalanceAmounts.at(i) = calculateYearEndBalance(amount);
-		yearEndBalanceWithOutDeposits.at(i) = calculateYearEndBalanceWithoutDeposit(amount);
-		endEarnedInterestAmounts.at(i) = calculateEndEarnedInterest(amount, true);
-		endEarnedInterestAmtWoutDeposits.at(i) = calculateEndEarnedInterest(amount, false);
+		//yearEndBalanceAmounts.at(i) = calculateYearEndBalance(amount);
+		//yearEndBalanceWithOutDeposits.at(i) = calculateYearEndBalanceWithoutDeposit(amount);
+		//endEarnedInterestAmounts.at(i) = calculateEndEarnedInterest(amount, true);
+		//endEarnedInterestAmtWoutDeposits.at(i) = calculateEndEarnedInterest(amount, false);
+
+		yearEndBalanceWithOutDeposits.at(i - 1) = calculateCompoundInterest(i);
 	}
 }
 
@@ -30,4 +32,15 @@ double CompoundInvestmentModel::calculateEndEarnedInterest(double amount, bool w
 {
 	return (withDeposit) ? (amount + monthlyDeposit) * ((annualIntrestRate / 100) / 12) : 
 	amount * ((annualIntrestRate / 100) / 12);
+}
+
+double CompoundInvestmentModel::calculateClosingBalance()
+{
+	//TODO: Use the compound intrest formula...
+	return 0.0;
+}
+
+double CompoundInvestmentModel::calculateCompoundInterest(int lengthOfInvestment)
+{
+	return iniInvestAmount * pow((1 + ((annualIntrestRate / 100) / 12)), (12 * lengthOfInvestment));
 }

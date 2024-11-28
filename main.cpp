@@ -23,8 +23,9 @@ int main()
 
 		 CompoundInvestmentModel* investmentModel = new CompoundInvestmentModel(input);
 
-		investmentModel->calculateInvestment();
+		 investmentModel->calculateInvestment();
 
+		 //Print user feedback and wait for any input... Windows Only!
 		 InputOutput->printMessage("Press any key to continue. . .\n");
 		 _getch();
 

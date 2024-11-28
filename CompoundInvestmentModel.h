@@ -31,6 +31,8 @@ public:
 		endEarnedInterestAmounts.resize(months / 12);
 		endEarnedInterestAmtWoutDeposits.resize(months / 12);
 		yearEndBalanceWithOutDeposits.resize(months / 12);
+		yearlyClosingBalancesWithDeposits.resize(months / 12);
+		yearlyClosingBalancesWithoutDeposits.resize(months / 12);
 	}
 	CompoundInvestmentModel(UserInput* input) : input(input)
 	{
@@ -43,6 +45,8 @@ public:
 		endEarnedInterestAmounts.resize(months / 12);
 		endEarnedInterestAmtWoutDeposits.resize(months / 12);
 		yearEndBalanceWithOutDeposits.resize(months / 12);
+		yearlyClosingBalancesWithDeposits.resize(months / 12);
+		yearlyClosingBalancesWithoutDeposits.resize(months / 12);
 	}
 
 	//Getters/Setters
@@ -52,19 +56,18 @@ public:
 	inline const int getNumOfYears(){return months / 12;}
 
 	inline const double getEndYearBalance(int year){return yearEndBalanceAmounts.at(year) + endEarnedInterestAmounts.at(year);}
-	inline const double getClosingBalance(){return closingBalance;}
 
 	inline const std::vector<double> getYearEndBalanceAmounts(){return yearEndBalanceAmounts;}
 	inline const std::vector<double> getEarnedIntrestAmounts(){return endEarnedInterestAmounts;}
 	inline const std::vector<double> getEndBalanceWithoutDeposits(){return yearEndBalanceWithOutDeposits;}
 	inline const std::vector<double> getEndEarnedInterestAmtWoutDeposits(){return endEarnedInterestAmtWoutDeposits;}
+	inline const std::vector<double> getClosingBalancesNoDeposits(){return yearlyClosingBalancesWithoutDeposits;}
+	inline const std::vector<double> getClosingBalancesWithdeposits(){return yearlyClosingBalancesWithDeposits;}
 
 	inline void setIniInvestAmount(double amount){iniInvestAmount = amount;}
 	inline void setMonthlyDeposit(double amount){monthlyDeposit = amount;}
 	inline void setAnnualIntrestRate(double amount){annualIntrestRate = amount;}
 	inline void setNumOfYears(unsigned amount){months = amount;}
-
-	//Calculation Function for interest and balance.
 
 	//this function performs the necessary calculations for the investment model.
 	void calculateInvestment();
@@ -83,13 +86,12 @@ private:
 	UserInput* input = nullptr;
 
 	//Calculated Amounts
-
-	double closingBalance = 0.0;
-
 	std::vector<double> yearEndBalanceAmounts;
 	std::vector<double> endEarnedInterestAmounts;
 	std::vector<double> endEarnedInterestAmtWoutDeposits;
 	std::vector<double> yearEndBalanceWithOutDeposits;
+	std::vector<double> yearlyClosingBalancesWithoutDeposits;
+	std::vector<double> yearlyClosingBalancesWithDeposits;
 
 	//Calculation helper Functions
 	void calculateWithDeposit();

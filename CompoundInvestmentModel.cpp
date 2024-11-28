@@ -1,8 +1,6 @@
 #include "CompoundInvestmentModel.h"
 
-#include <cmath>
 #include <iostream>
-#include <iomanip>
 
 void CompoundInvestmentModel::calculateInvestment()
 {

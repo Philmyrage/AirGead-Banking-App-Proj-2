@@ -4,7 +4,7 @@
 #include <iostream>
 #include <format>
 
-UserInput* UserInputOutput::GetUserInput()
+UserInput* UserInputOutput::getUserInput()
 {
     UserInput* userInput = new UserInput;
 
@@ -23,7 +23,7 @@ UserInput* UserInputOutput::GetUserInput()
     return userInput;
 }
 
-const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const investmentModel)
+const void UserInputOutput::printInvestmentReport(CompoundInvestmentModel* const investmentModel)
 {
     const int numOfYears = investmentModel->getNumOfYears();
 

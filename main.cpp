@@ -13,7 +13,7 @@ int main()
 
 	while (runAgain)
 	{
-		 input = InputOutput->GetUserInput();
+		 input = InputOutput->getUserInput();
 
 		 CompoundInvestmentModel* investmentModel = new CompoundInvestmentModel(input->iniInvestAmount,
 													   input->monthlyDeposit,
@@ -26,7 +26,7 @@ int main()
 		 _getch();
 
 
-		 InputOutput->PrintInvestmentReport(investmentModel);
+		 InputOutput->printInvestmentReport(investmentModel);
 
 		 //Ask to run again
 		runAgain = InputOutput->runAgain();

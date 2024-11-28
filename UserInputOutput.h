@@ -16,9 +16,9 @@ public:
 	
 	const void printMessage(const std::string& message);
 	
-	UserInput* GetUserInput();
+	UserInput* getUserInput();
 	
-	const void PrintInvestmentReport(class CompoundInvestmentModel* const investmentModel);
+	const void printInvestmentReport(class CompoundInvestmentModel* const investmentModel);
 
 	//returns true if the user enters 'y' false for anything else.
 	const bool runAgain();

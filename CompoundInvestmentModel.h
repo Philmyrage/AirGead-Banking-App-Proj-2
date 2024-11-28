@@ -7,6 +7,7 @@
 
 #include "UserInput.h"
 
+#include <memory>
 #include <vector>
 
 class CompoundInvestmentModel
@@ -34,12 +35,12 @@ public:
 		yearlyClosingBalancesWithDeposits.resize(months / 12);
 		yearlyClosingBalancesWithoutDeposits.resize(months / 12);
 	}
-	CompoundInvestmentModel(UserInput* input) : input(input)
+	CompoundInvestmentModel(std::unique_ptr<UserInput> input): input(std::move(input))
 	{
-		this->annualIntrestRate = (input->annualIntrestRate / 100) / 12;
-		this->iniInvestAmount = input->iniInvestAmount;
-		this->monthlyDeposit = input->monthlyDeposit;
-		this->months = input->months;
+		this->annualIntrestRate = (this->input->annualIntrestRate / 100) / 12;
+		this->iniInvestAmount = this->input->iniInvestAmount;
+		this->monthlyDeposit = this->input->monthlyDeposit;
+		this->months = this->input->months;
 
 		yearEndBalanceAmounts.resize(months / 12);
 		endEarnedInterestAmounts.resize(months / 12);
@@ -83,7 +84,7 @@ private:
 	double annualIntrestRate;
 	int months;
 
-	UserInput* input = nullptr;
+	std::unique_ptr<UserInput> input = nullptr;
 
 	//Calculated Amounts
 	std::vector<double> yearEndBalanceAmounts;

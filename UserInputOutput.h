@@ -6,19 +6,24 @@
 #pragma once
 
 #include "UserInput.h"
-
+#include <memory>
 #include<string>
 #include<vector>
 
 class UserInputOutput
 {
 public:
+
+	UserInputOutput()
+	{
+
+	};
+	
+	std::unique_ptr<UserInput> getUserInput();
 	
 	const void printMessage(const std::string& message);
 	
-	UserInput* const getUserInput();
-	
-	const void printInvestmentReport(class CompoundInvestmentModel* const investmentModel);
+	void printInvestmentReport(std::unique_ptr<class CompoundInvestmentModel>& investmentModel);
 
 	//returns true if the user enters 'y' false for anything else.
 	const bool runAgain();

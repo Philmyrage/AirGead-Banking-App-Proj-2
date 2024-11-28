@@ -9,9 +9,9 @@
 #include <iostream>
 #include <format>
 
-UserInput* const UserInputOutput::getUserInput()
+std::unique_ptr<UserInput> UserInputOutput::getUserInput()
 {
-    UserInput* userInput = new UserInput;
+    auto userInput = std::unique_ptr<UserInput>(new UserInput);
 
     std::cout << std::format("{:*>{}}", "", 50) << std::endl << std::endl;
     std::cout << std::format("{:*^{}}", " Data Input ", 50) << std::endl << std::endl;
@@ -25,10 +25,10 @@ UserInput* const UserInputOutput::getUserInput()
     printMessage("Number of years in (months):  ");
     std::cin >> userInput->months;
 
-    return userInput;
+    return std::move(userInput);
 }
 
-const void UserInputOutput::printInvestmentReport(CompoundInvestmentModel* const investmentModel)
+void UserInputOutput::printInvestmentReport(std::unique_ptr<CompoundInvestmentModel>& investmentModel)
 {
     const int numOfYears = investmentModel->getNumOfYears();
     

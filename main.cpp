@@ -13,15 +13,14 @@
 int main()
 {
 
-	UserInputOutput* InputOutput = new UserInputOutput;
-	UserInput* input = nullptr;
+	auto InputOutput = std::make_unique<UserInputOutput>();
 	bool runAgain = true;
 
 	while (runAgain)
 	{
-		 input = InputOutput->getUserInput();
+		 auto input = InputOutput->getUserInput();
 
-		 CompoundInvestmentModel* investmentModel = new CompoundInvestmentModel(input);
+		 auto investmentModel = std::make_unique<CompoundInvestmentModel>(std::move(input));
 
 		 investmentModel->calculateInvestment();
 
@@ -35,10 +34,6 @@ int main()
 		 //Ask to run again
 		runAgain = InputOutput->runAgain();
 	}
-
-
-	delete InputOutput;
-	delete input;
 
 	return 0;
 }

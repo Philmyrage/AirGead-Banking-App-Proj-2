@@ -55,30 +55,8 @@ void CompoundInvestmentModel::calculateWithoutDeposit()
 	
 }
 
-double CompoundInvestmentModel::calculateYearEndBalanceWithoutDeposit(double amount, int lengthOfTime)
-{
-	return amount * pow(1.0 + annualIntrestRate, 12);
-}
-
 double CompoundInvestmentModel::calculateClosingBalance()
 {
 	//TODO: Use the compound intrest formula...
 	return 0.0;
-}
-
-double CompoundInvestmentModel::calculateCompoundInterest(double amount, bool withoutDeposit, int lengthOfInvestment)
-{
-	if (withoutDeposit == false)
-	{
-		for (int i = 1; i <= 12; ++i)
-		{
-			amount += monthlyDeposit * (pow(1.0 + annualIntrestRate, (12.0 - i)) - 1.0);
-		}
-	}
-	else
-	{
-		return amount * (pow(1.0 + annualIntrestRate, (12.0 * lengthOfInvestment)) - 1.0);
-	}
-
-	return  amount;
 }

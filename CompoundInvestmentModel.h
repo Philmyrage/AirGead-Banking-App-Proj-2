@@ -78,13 +78,8 @@ private:
 
 	void calculateWithoutDeposit();
 
-	double calculateYearEndBalanceWithoutDeposit(double amount, int lengthOfTime);
-
-	//this function returns the Earned compounded interest of the amount given.
-	double calculateEndEarnedInterest(double amount, bool withDeposit);
-
 	double calculateClosingBalance();
 
-	double calculateCompoundInterest(double amount, bool withoutDeposit, int lengthOfInvestment = 1);
+	
 };
 

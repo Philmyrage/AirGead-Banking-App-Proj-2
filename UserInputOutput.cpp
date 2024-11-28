@@ -27,10 +27,10 @@ const void UserInputOutput::printInvestmentReport(CompoundInvestmentModel* const
 {
     const int numOfYears = investmentModel->getNumOfYears();
 
-    std::vector<double> yrEndBalanceWOutDeposit = investmentModel->getEndBalanceWithoutDeposits();
-    std::vector<double> endEarnedInterestWOutDepoist = investmentModel->getEndEarnedInterestAmtWoutDeposits();
+    std::vector<double> yrEndBalanceWOutDepo = investmentModel->getEndBalanceWithoutDeposits();
+    std::vector<double> yrEndInterestWOutDepo = investmentModel->getEndEarnedInterestAmtWoutDeposits();
     printTable(" Balance and Interest Without Additional Monthly Deposits ");
-    printReport(yrEndBalanceWOutDeposit, endEarnedInterestWOutDepoist, numOfYears);
+    printReport(yrEndBalanceWOutDepo, yrEndInterestWOutDepo, numOfYears);
     
     std::vector<double> yrEndBalanceWithDepo = investmentModel->getYearEndBalanceAmounts();
     std::vector<double> yrEndInterestWithDepo = investmentModel->getEarnedIntrestAmounts();

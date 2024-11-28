@@ -39,6 +39,7 @@ const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const
 
     std::vector<double> yrEndBalanceWOutDeposit = investmentModel->getEndBalanceWithoutDeposits();
     std::vector<double> endEarnedInterestWOutDepoist = investmentModel->getEndEarnedInterestAmtWoutDeposits();
+    
 
     //Loop the number of years adding rows with the associated data...
     for (int i = 0; i < investmentModel->getNumOfYears(); i++)
@@ -53,6 +54,36 @@ const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const
         //Year End Earned Interest
         std::cout << std::format("{: >{}}", std::format("{}{:.2f}","$", endEarnedInterestWOutDepoist.at(i)), 34);
         
+        //once row is complete start new row.
+        std::cout << std::endl << std::endl;
+    }
+
+    std::cout << "\n";
+    std::cout << std::format("{:=^{}}", " Balance and Interest With Additional Monthly Deposits ", 100) << std::endl;
+    std::cout << std::format("{:=>{}}", "", 100) << std::endl;
+
+    //These lines are dividing the default space of 100 between them since they are on the same line...
+    std::cout << std::format("{: <{}}", "Year", 33);
+    std::cout << std::format("{: ^{}}", "Year End Balance", 33);
+    std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
+    std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
+
+    std::vector<double> yrEndBalanceWithDepo = investmentModel->getYearEndBalanceAmounts();
+    std::vector<double> yrEndInterestWithDepo = investmentModel->getEarnedIntrestAmounts();
+
+    //Loop the number of years adding rows with the associated data...
+    for (int i = 0; i < investmentModel->getNumOfYears(); i++)
+    {
+
+        //Year
+        std::cout << std::format("{: <{}}", i + 1, 33);
+
+        //Year End Balance
+        std::cout << std::format("{: ^{}}", std::format("{}{:.2f}", "$", yrEndBalanceWithDepo.at(i)), 33);
+
+        //Year End Earned Interest
+        std::cout << std::format("{: >{}}", std::format("{}{:.2f}", "$", yrEndInterestWithDepo.at(i)), 34);
+
         //once row is complete start new row.
         std::cout << std::endl << std::endl;
     }

@@ -11,28 +11,29 @@ public:
 		iniInvestAmount = 0;
 		monthlyDeposit = 0;
 		annualIntrestRate = 0;
-		numOfYears = 0;
+		months = 0;
 	}
-	CompoundInvestmentModel(double iniInvestAmount, double monthlyDeposit, double annualIntrestRate, unsigned numOfYears)
+	CompoundInvestmentModel(double iniInvestAmount, double monthlyDeposit, double annualIntrestRate, int months)
 	{
-		this->annualIntrestRate = annualIntrestRate;
+		this->annualIntrestRate = (annualIntrestRate / 100) / 12;
 		this->iniInvestAmount = iniInvestAmount;
 		this->monthlyDeposit = monthlyDeposit;
-		this->numOfYears = numOfYears;
+		this->months = months;
 		
 		//TODO: change this for when i Handle months in input...
-		yearEndBalanceAmounts.resize(numOfYears);
-		endEarnedInterestAmounts.resize(numOfYears);
-		endEarnedInterestAmtWoutDeposits.resize(numOfYears);
-		yearEndBalanceWithOutDeposits.resize(numOfYears);
+		yearEndBalanceAmounts.resize(months / 12);
+		endEarnedInterestAmounts.resize(months / 12);
+		endEarnedInterestAmtWoutDeposits.resize(months / 12);
+		yearEndBalanceWithOutDeposits.resize(months / 12);
 	}
 
 	//Getters/Setters
 	inline double getIniinvestAmount(){return iniInvestAmount;}
 	inline double getMonthlyDepost(){return monthlyDeposit;}
 	inline double getAnnualIntrestRate(){return annualIntrestRate;}
-	inline unsigned getNumOfYears(){return numOfYears;}
+	inline unsigned getNumOfYears(){return months / 12;}
 
+	inline double getEndYearBalance(int year){return yearEndBalanceAmounts.at(year) + endEarnedInterestAmounts.at(year);}
 	inline double getClosingBalance(){return closingBalance;}
 
 	inline std::vector<double> getYearEndBalanceAmounts(){return yearEndBalanceAmounts;}
@@ -43,7 +44,7 @@ public:
 	inline void setIniInvestAmount(double amount){iniInvestAmount = amount;}
 	inline void setMonthlyDeposit(double amount){monthlyDeposit = amount;}
 	inline void setAnnualIntrestRate(double amount){annualIntrestRate = amount;}
-	inline void setNumOfYears(unsigned amount){numOfYears = amount;}
+	inline void setNumOfYears(unsigned amount){months = amount;}
 
 	//Calculation Function for interest and balance.
 
@@ -59,7 +60,7 @@ private:
 	double iniInvestAmount;
 	double monthlyDeposit;
 	double annualIntrestRate;
-	unsigned numOfYears;
+	int months;
 
 	//Calculated Amounts
 
@@ -73,7 +74,9 @@ private:
 	//Calculation helper Functions for interest and balance.
 
 	//This function takes the previous years amount and calculates the next years end balance.
-	double calculateYearEndBalance(double amount);
+	void calculateWithDeposit();
+
+	void calculateWithoutDeposit();
 
 	double calculateYearEndBalanceWithoutDeposit(double amount, int lengthOfTime);
 
@@ -82,6 +85,6 @@ private:
 
 	double calculateClosingBalance();
 
-	double calculateCompoundInterest(double amount, int lengthOfInvestment = 1, bool withoutDeposit = false);
+	double calculateCompoundInterest(double amount, bool withoutDeposit, int lengthOfInvestment = 1);
 };
 

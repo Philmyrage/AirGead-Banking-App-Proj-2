@@ -1,34 +1,63 @@
 #include "CompoundInvestmentModel.h"
 
 #include <cmath>
+#include <iostream>
+#include <iomanip>
 
 void CompoundInvestmentModel::calculateInvestment()
 {
-	for (int i = 1; i <= getNumOfYears(); i++)
+	calculateWithDeposit();
+	calculateWithoutDeposit();
+}
+
+void CompoundInvestmentModel::calculateWithDeposit()
+{
+	int count = 0;
+	double total = iniInvestAmount;
+	double interest = 0.0;
+	double yrEndEarnedInterest = 0.0;
+	for (int i = 1; i <= months; ++i)
 	{
-		//if its the first iteration calculate on the initial amount otherwise use the previous year.
-		double amount = (i == 1) ? iniInvestAmount : yearEndBalanceWithOutDeposits.at(i - 2);
-
-
-		yearEndBalanceWithOutDeposits.at(i - 1) = calculateYearEndBalanceWithoutDeposit(amount, i);
-		endEarnedInterestAmtWoutDeposits.at(i - 1) = calculateCompoundInterest(amount);
+		total += (monthlyDeposit + (total * annualIntrestRate));
+		interest = (total * annualIntrestRate);
+		yrEndEarnedInterest += interest;
+		if (i % 12 == 0)
+		{ 
+			yearEndBalanceAmounts.at(count) = total;
+			endEarnedInterestAmounts.at(count) = yrEndEarnedInterest;
+			yrEndEarnedInterest = 0.0;
+			count++;
+		}
 	}
 }
 
-double CompoundInvestmentModel::calculateYearEndBalance(double amount)
+void CompoundInvestmentModel::calculateWithoutDeposit()
 {
-	return amount + monthlyDeposit + calculateEndEarnedInterest(amount, true);
+	int count = 0;
+	double total = iniInvestAmount;
+	double interest = 0.0;
+	double yrEndEarnedInterest = 0.0;
+	
+	for (int i = 1; i <= months; ++i)
+	{
+		total += (total * annualIntrestRate);
+		interest = (total * annualIntrestRate);
+		yrEndEarnedInterest += interest;
+		if (i % 12 == 0)
+		{
+			
+			yearEndBalanceWithOutDeposits.at(count) = total;
+			endEarnedInterestAmtWoutDeposits.at(count) = yrEndEarnedInterest;
+			yrEndEarnedInterest = 0.0;
+			count++;
+		}
+	}
+	
 }
 
 double CompoundInvestmentModel::calculateYearEndBalanceWithoutDeposit(double amount, int lengthOfTime)
 {
-	return amount * pow((1.0 + ((annualIntrestRate / 100.0) / 12.0)), (12.0 * 1));
-}
-
-double CompoundInvestmentModel::calculateEndEarnedInterest(double amount, bool withDeposit)
-{
-	return (withDeposit) ? (amount + monthlyDeposit) * ((annualIntrestRate / 100) / 12) : 
-	amount * ((annualIntrestRate / 100) / 12);
+	return amount * pow(1.0 + annualIntrestRate, 12);
 }
 
 double CompoundInvestmentModel::calculateClosingBalance()
@@ -37,7 +66,19 @@ double CompoundInvestmentModel::calculateClosingBalance()
 	return 0.0;
 }
 
-double CompoundInvestmentModel::calculateCompoundInterest(double amount, int lengthOfInvestment, bool withoutDepoist)
+double CompoundInvestmentModel::calculateCompoundInterest(double amount, bool withoutDeposit, int lengthOfInvestment)
 {
-	return  amount * (pow((1.0 + ((annualIntrestRate / 100.0) / 12.0)), (12.0 * lengthOfInvestment)) - 1);
+	if (withoutDeposit == false)
+	{
+		for (int i = 1; i <= 12; ++i)
+		{
+			amount += monthlyDeposit * (pow(1.0 + annualIntrestRate, (12.0 - i)) - 1.0);
+		}
+	}
+	else
+	{
+		return amount * (pow(1.0 + annualIntrestRate, (12.0 * lengthOfInvestment)) - 1.0);
+	}
+
+	return  amount;
 }

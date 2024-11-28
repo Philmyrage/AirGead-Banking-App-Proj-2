@@ -18,12 +18,12 @@ void CompoundInvestmentModel::calculateWithDeposit()
 	double yrEndEarnedInterest = 0.0;
 	for (int i = 1; i <= months; ++i)
 	{
-		total += (monthlyDeposit + (total * annualIntrestRate));
+		total = (total + monthlyDeposit) + (total * annualIntrestRate);
 		interest = (total * annualIntrestRate);
 		yrEndEarnedInterest += interest;
 		if (i % 12 == 0)
 		{ 
-			yearEndBalanceAmounts.at(count) = total;
+			yearEndBalanceAmounts.at(count) = total + interest;
 			endEarnedInterestAmounts.at(count) = yrEndEarnedInterest;
 			yrEndEarnedInterest = 0.0;
 			count++;

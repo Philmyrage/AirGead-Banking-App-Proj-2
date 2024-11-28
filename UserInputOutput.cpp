@@ -10,8 +10,8 @@ UserInput* UserInputOutput::GetUserInput()
 {
     UserInput* userInput = new UserInput;
 
-    printMessage("***********************************\n");
-    printMessage("************ Data Input ***********\n\n");
+    std::cout << std::format("{:*>{}}", "", 50) << std::endl << std::endl;
+    std::cout << std::format("{:*^{}}", " Data Input ", 50) << std::endl << std::endl;
 
     printMessage("Initial Investment Amount:  ");
     std::cin >> userInput->iniInvestAmount;

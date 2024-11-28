@@ -16,7 +16,7 @@ public:
 	
 	const void printMessage(const std::string& message);
 	
-	UserInput* getUserInput();
+	UserInput* const getUserInput();
 	
 	const void printInvestmentReport(class CompoundInvestmentModel* const investmentModel);
 

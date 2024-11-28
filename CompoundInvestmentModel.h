@@ -28,18 +28,18 @@ public:
 	}
 
 	//Getters/Setters
-	inline double getIniinvestAmount(){return iniInvestAmount;}
-	inline double getMonthlyDepost(){return monthlyDeposit;}
-	inline double getAnnualIntrestRate(){return annualIntrestRate;}
-	inline unsigned getNumOfYears(){return months / 12;}
+	inline const double getIniinvestAmount(){return iniInvestAmount;}
+	inline const double getMonthlyDepost(){return monthlyDeposit;}
+	inline const double getAnnualIntrestRate(){return annualIntrestRate;}
+	inline const int getNumOfYears(){return months / 12;}
 
-	inline double getEndYearBalance(int year){return yearEndBalanceAmounts.at(year) + endEarnedInterestAmounts.at(year);}
-	inline double getClosingBalance(){return closingBalance;}
+	inline const double getEndYearBalance(int year){return yearEndBalanceAmounts.at(year) + endEarnedInterestAmounts.at(year);}
+	inline const double getClosingBalance(){return closingBalance;}
 
-	inline std::vector<double> getYearEndBalanceAmounts(){return yearEndBalanceAmounts;}
-	inline std::vector<double> getEarnedIntrestAmounts(){return endEarnedInterestAmounts;}
-	inline std::vector<double> getEndBalanceWithoutDeposits(){return yearEndBalanceWithOutDeposits;}
-	inline std::vector<double> getEndEarnedInterestAmtWoutDeposits(){return endEarnedInterestAmtWoutDeposits;}
+	inline const std::vector<double> getYearEndBalanceAmounts(){return yearEndBalanceAmounts;}
+	inline const std::vector<double> getEarnedIntrestAmounts(){return endEarnedInterestAmounts;}
+	inline const std::vector<double> getEndBalanceWithoutDeposits(){return yearEndBalanceWithOutDeposits;}
+	inline const std::vector<double> getEndEarnedInterestAmtWoutDeposits(){return endEarnedInterestAmtWoutDeposits;}
 
 	inline void setIniInvestAmount(double amount){iniInvestAmount = amount;}
 	inline void setMonthlyDeposit(double amount){monthlyDeposit = amount;}

@@ -55,5 +55,5 @@ void CompoundInvestmentModel::calculateWithoutDeposit()
 
 void CompoundInvestmentModel::calculateClosingBalance()
 {
-
+	
 }

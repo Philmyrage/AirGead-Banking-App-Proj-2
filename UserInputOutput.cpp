@@ -4,7 +4,7 @@
 #include <iostream>
 #include <format>
 
-UserInput* UserInputOutput::getUserInput()
+UserInput* const UserInputOutput::getUserInput()
 {
     UserInput* userInput = new UserInput;
 

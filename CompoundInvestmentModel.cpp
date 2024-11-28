@@ -53,8 +53,7 @@ void CompoundInvestmentModel::calculateWithoutDeposit()
 	
 }
 
-double CompoundInvestmentModel::calculateClosingBalance()
+void CompoundInvestmentModel::calculateClosingBalance()
 {
-	//TODO: Use the compound intrest formula...
-	return 0.0;
+
 }

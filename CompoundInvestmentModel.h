@@ -71,15 +71,12 @@ private:
 	std::vector<double> endEarnedInterestAmtWoutDeposits;
 	std::vector<double> yearEndBalanceWithOutDeposits;
 
-	//Calculation helper Functions for interest and balance.
-
-	//This function takes the previous years amount and calculates the next years end balance.
+	//Calculation helper Functions
 	void calculateWithDeposit();
 
 	void calculateWithoutDeposit();
 
-	double calculateClosingBalance();
+	void calculateClosingBalance();
 
-	
 };
 

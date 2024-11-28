@@ -17,7 +17,7 @@ UserInput* UserInputOutput::getUserInput()
     std::cin >> userInput->monthlyDeposit;
     printMessage("Annual Interest:  ");
     std::cin >> userInput->annualIntrestRate;
-    printMessage("Number of years:  ");
+    printMessage("Number of years in (months):  ");
     std::cin >> userInput->numOfYears;
 
     return userInput;

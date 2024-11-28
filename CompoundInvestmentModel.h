@@ -5,6 +5,8 @@
 */
 #pragma once
 
+#include "UserInput.h"
+
 #include <vector>
 
 class CompoundInvestmentModel
@@ -25,7 +27,18 @@ public:
 		this->monthlyDeposit = monthlyDeposit;
 		this->months = months;
 		
-		//TODO: change this for when i Handle months in input...
+		yearEndBalanceAmounts.resize(months / 12);
+		endEarnedInterestAmounts.resize(months / 12);
+		endEarnedInterestAmtWoutDeposits.resize(months / 12);
+		yearEndBalanceWithOutDeposits.resize(months / 12);
+	}
+	CompoundInvestmentModel(UserInput* input) : input(input)
+	{
+		this->annualIntrestRate = (input->annualIntrestRate / 100) / 12;
+		this->iniInvestAmount = input->iniInvestAmount;
+		this->monthlyDeposit = input->monthlyDeposit;
+		this->months = input->months;
+
 		yearEndBalanceAmounts.resize(months / 12);
 		endEarnedInterestAmounts.resize(months / 12);
 		endEarnedInterestAmtWoutDeposits.resize(months / 12);
@@ -66,6 +79,8 @@ private:
 	double monthlyDeposit;
 	double annualIntrestRate;
 	int months;
+
+	UserInput* input = nullptr;
 
 	//Calculated Amounts
 

@@ -21,10 +21,7 @@ int main()
 	{
 		 input = InputOutput->getUserInput();
 
-		 CompoundInvestmentModel* investmentModel = new CompoundInvestmentModel(input->iniInvestAmount,
-													   input->monthlyDeposit,
-											           input->annualIntrestRate,
-													   input->numOfYears);
+		 CompoundInvestmentModel* investmentModel = new CompoundInvestmentModel(input);
 
 		investmentModel->calculateInvestment();
 

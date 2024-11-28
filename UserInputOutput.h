@@ -4,16 +4,11 @@
 	https://github.com/Philmyrage/AirGead-Banking-App-Proj-2
 */
 #pragma once
+
+#include "UserInput.h"
+
 #include<string>
 #include<vector>
-
-struct UserInput
-{
-	double iniInvestAmount = 0.0;
-	double monthlyDeposit = 0.0;
-	double annualIntrestRate = 0.0;
-	int numOfYears = 0;
-};
 
 class UserInputOutput
 {

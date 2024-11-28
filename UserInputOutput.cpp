@@ -23,7 +23,7 @@ UserInput* const UserInputOutput::getUserInput()
     printMessage("Annual Interest:  ");
     std::cin >> userInput->annualIntrestRate;
     printMessage("Number of years in (months):  ");
-    std::cin >> userInput->numOfYears;
+    std::cin >> userInput->months;
 
     return userInput;
 }

@@ -21,6 +21,9 @@
     <ClInclude Include="UserInputOutput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UserInput.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CompoundInvestmentModel.cpp">

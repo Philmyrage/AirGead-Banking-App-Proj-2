@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <format>
-#include <map>
-#include <string>
 
 UserInput* UserInputOutput::GetUserInput()
 {
@@ -27,51 +25,17 @@ UserInput* UserInputOutput::GetUserInput()
 
 const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const investmentModel)
 {
-
-    PrintTable(" Balance and Interest Without Additional Monthly Deposits ");
+    const int numOfYears = investmentModel->getNumOfYears();
 
     std::vector<double> yrEndBalanceWOutDeposit = investmentModel->getEndBalanceWithoutDeposits();
     std::vector<double> endEarnedInterestWOutDepoist = investmentModel->getEndEarnedInterestAmtWoutDeposits();
+    printTable(" Balance and Interest Without Additional Monthly Deposits ");
+    printReport(yrEndBalanceWOutDeposit, endEarnedInterestWOutDepoist, numOfYears);
     
-
-    //Loop the number of years adding rows with the associated data...
-    for (int i = 0; i < investmentModel->getNumOfYears(); i++)
-    {
- 
-        //Year
-        std::cout << std::format("{: <{}}", i + 1, 33);
-
-        //Year End Balance
-        std::cout << std::format("{: ^{}}", std::format("{}{:.2f}", "$", yrEndBalanceWOutDeposit.at(i)), 33);
-
-        //Year End Earned Interest
-        std::cout << std::format("{: >{}}", std::format("{}{:.2f}","$", endEarnedInterestWOutDepoist.at(i)), 34);
-        
-        //once row is complete start new row.
-        std::cout << std::endl << std::endl;
-    }
-
-    PrintTable(" Balance and Interest With Additional Monthly Deposits ");
-
     std::vector<double> yrEndBalanceWithDepo = investmentModel->getYearEndBalanceAmounts();
     std::vector<double> yrEndInterestWithDepo = investmentModel->getEarnedIntrestAmounts();
-
-    //Loop the number of years adding rows with the associated data...
-    for (int i = 0; i < investmentModel->getNumOfYears(); i++)
-    {
-
-        //Year
-        std::cout << std::format("{: <{}}", i + 1, 33);
-
-        //Year End Balance
-        std::cout << std::format("{: ^{}}", std::format("{}{:.2f}", "$", yrEndBalanceWithDepo.at(i)), 33);
-
-        //Year End Earned Interest
-        std::cout << std::format("{: >{}}", std::format("{}{:.2f}", "$", yrEndInterestWithDepo.at(i)), 34);
-
-        //once row is complete start new row.
-        std::cout << std::endl << std::endl;
-    }
+    printTable(" Balance and Interest With Additional Monthly Deposits ");
+    printReport(yrEndBalanceWithDepo, yrEndInterestWithDepo, numOfYears);
 
     std::cout << std::format("{:->{}}", "", 100) << std::endl;
     std::cout << std::format("{: ^{}}", "Closing Balance: " + std::to_string(100), 100) << std::endl;
@@ -85,7 +49,7 @@ const bool UserInputOutput::runAgain()
     return response == 'y';
 }
 
-const void UserInputOutput::PrintTable(const std::string& tableName)
+const void UserInputOutput::printTable(const std::string& tableName)
 {
     //" Balance and Interest Without Additional Monthly Deposits "
     std::cout << "\n";
@@ -97,6 +61,26 @@ const void UserInputOutput::PrintTable(const std::string& tableName)
     std::cout << std::format("{: ^{}}", "Year End Balance", 33);
     std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
     std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
+}
+
+const void UserInputOutput::printReport(const std::vector<double>& yearEndBalances, const std::vector<double>& yearEndInterest, int numOfYears)
+{
+    //Loop the number of years adding rows with the associated data...
+    for (int i = 0; i < numOfYears; i++)
+    {
+
+        //Year
+        std::cout << std::format("{: <{}}", i + 1, 33);
+
+        //Year End Balance
+        std::cout << std::format("{: ^{}}", std::format("{}{:.2f}", "$", yearEndBalances.at(i)), 33);
+
+        //Year End Earned Interest
+        std::cout << std::format("{: >{}}", std::format("{}{:.2f}", "$", yearEndInterest.at(i)), 34);
+
+        //once row is complete start new row.
+        std::cout << std::endl << std::endl;
+    }
 }
 
 const void UserInputOutput::printMessage(const std::string& message)

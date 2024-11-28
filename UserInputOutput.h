@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include<vector>
 
 struct UserInput
 {
@@ -26,7 +27,8 @@ protected:
 
 private:
 	
-	const void PrintTable(const std::string& tableName);
+	const void printTable(const std::string& tableName);
 
+	const void printReport(const std::vector<double>& yearEndBalances, const std::vector<double>& yearEndInterest, int numOfYears);
 };
 

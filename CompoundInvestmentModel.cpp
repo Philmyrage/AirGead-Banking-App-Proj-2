@@ -14,11 +14,13 @@ void CompoundInvestmentModel::calculateWithDeposit()
 	double total = iniInvestAmount;
 	double interest = 0.0;
 	double yrEndEarnedInterest = 0.0;
+	//for every month we add the deposit and calculate the interest.
 	for (int i = 1; i <= months; ++i)
 	{
 		total = (total + monthlyDeposit) + (total * annualIntrestRate);
 		interest = (total * annualIntrestRate);
 		yrEndEarnedInterest += interest;
+		//for every year we add those values to a vector to print to our user.
 		if (i % 12 == 0)
 		{ 
 			yearEndBalanceAmounts.at(count) = total + interest;
@@ -36,11 +38,13 @@ void CompoundInvestmentModel::calculateWithoutDeposit()
 	double interest = 0.0;
 	double yrEndEarnedInterest = 0.0;
 	
+	//for every month we add the deposit and calculate the interest.
 	for (int i = 1; i <= months; ++i)
 	{
 		total += (total * annualIntrestRate);
 		interest = (total * annualIntrestRate);
 		yrEndEarnedInterest += interest;
+		//for every year we add those values to a vector to print to our user.
 		if (i % 12 == 0)
 		{
 			

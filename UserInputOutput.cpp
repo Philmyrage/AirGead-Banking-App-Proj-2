@@ -55,6 +55,12 @@ const bool UserInputOutput::runAgain()
     return response == 'y';
 }
 
+const bool UserInputOutput::validInput(const std::string& input)
+{
+
+    return false;
+}
+
 const void UserInputOutput::printTable(const std::string& tableName)
 {
     //" Balance and Interest Without Additional Monthly Deposits "

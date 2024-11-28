@@ -75,13 +75,13 @@ private:
 	//This function takes the previous years amount and calculates the next years end balance.
 	double calculateYearEndBalance(double amount);
 
-	double calculateYearEndBalanceWithoutDeposit(double amount);
+	double calculateYearEndBalanceWithoutDeposit(double amount, int lengthOfTime);
 
 	//this function returns the Earned compounded interest of the amount given.
 	double calculateEndEarnedInterest(double amount, bool withDeposit);
 
 	double calculateClosingBalance();
 
-	double calculateCompoundInterest(int lengthOfInvestment);
+	double calculateCompoundInterest(double amount, int lengthOfInvestment = 1, bool withoutDeposit = false);
 };
 

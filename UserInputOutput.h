@@ -25,6 +25,8 @@ protected:
 
 
 private:
+	
+	const void PrintTable(const std::string& tableName);
 
 };
 

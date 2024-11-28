@@ -27,15 +27,8 @@ UserInput* UserInputOutput::GetUserInput()
 
 const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const investmentModel)
 {
-    std::cout << "\n";
-    std::cout << std::format("{:=^{}}", " Balance and Interest Without Additional Monthly Deposits ", 100) << std::endl;
-    std::cout << std::format("{:=>{}}", "", 100) << std::endl;
 
-    //These lines are dividing the default space of 100 between them since they are on the same line...
-    std::cout << std::format("{: <{}}","Year", 33);
-    std::cout << std::format("{: ^{}}", "Year End Balance", 33);
-    std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
-    std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
+    PrintTable(" Balance and Interest Without Additional Monthly Deposits ");
 
     std::vector<double> yrEndBalanceWOutDeposit = investmentModel->getEndBalanceWithoutDeposits();
     std::vector<double> endEarnedInterestWOutDepoist = investmentModel->getEndEarnedInterestAmtWoutDeposits();
@@ -58,15 +51,7 @@ const void UserInputOutput::PrintInvestmentReport(CompoundInvestmentModel* const
         std::cout << std::endl << std::endl;
     }
 
-    std::cout << "\n";
-    std::cout << std::format("{:=^{}}", " Balance and Interest With Additional Monthly Deposits ", 100) << std::endl;
-    std::cout << std::format("{:=>{}}", "", 100) << std::endl;
-
-    //These lines are dividing the default space of 100 between them since they are on the same line...
-    std::cout << std::format("{: <{}}", "Year", 33);
-    std::cout << std::format("{: ^{}}", "Year End Balance", 33);
-    std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
-    std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
+    PrintTable(" Balance and Interest With Additional Monthly Deposits ");
 
     std::vector<double> yrEndBalanceWithDepo = investmentModel->getYearEndBalanceAmounts();
     std::vector<double> yrEndInterestWithDepo = investmentModel->getEarnedIntrestAmounts();
@@ -98,6 +83,20 @@ const bool UserInputOutput::runAgain()
     std::cout << "Run another model? y/n:	";
     std::cin >> response;
     return response == 'y';
+}
+
+const void UserInputOutput::PrintTable(const std::string& tableName)
+{
+    //" Balance and Interest Without Additional Monthly Deposits "
+    std::cout << "\n";
+    std::cout << std::format("{:=^{}}", tableName, 100) << std::endl;
+    std::cout << std::format("{:=>{}}", "", 100) << std::endl;
+
+    //These lines are dividing the default space of 100 between them since they are on the same line...
+    std::cout << std::format("{: <{}}", "Year", 33);
+    std::cout << std::format("{: ^{}}", "Year End Balance", 33);
+    std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
+    std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
 }
 
 const void UserInputOutput::printMessage(const std::string& message)

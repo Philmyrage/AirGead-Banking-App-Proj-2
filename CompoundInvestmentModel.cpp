@@ -28,8 +28,10 @@ void CompoundInvestmentModel::calculateWithDeposit()
 	{
 		for (int k = 1; k <= 12; k++)
 		{
-			total += monthlyDeposit;
+			//I'm embarrassed to admit how long it took me to realize I had my order of these statements in the wrong order.
+			//The use of sense and it's test cases helped me test this function greatly! I had never had to use it until now.
 			interestForMonth = total * monthlyRate;
+			total += monthlyDeposit;
 			total += interestForMonth;
 			yrEndEarnedInterest += interestForMonth;
 		}

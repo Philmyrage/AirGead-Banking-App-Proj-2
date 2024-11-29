@@ -67,7 +67,7 @@ void CompoundInvestmentModel::calculateWithoutDeposit()
 		if (i % 12 == 0)
 		{
 			
-			yearEndBalanceWithOutDeposits.at(count) = total;
+			yearEndBalanceWithOutDeposits.at(count) = total - yrEndEarnedInterest;
 			endEarnedInterestAmtWoutDeposits.at(count) = yrEndEarnedInterest;
 			yearlyClosingBalancesWithoutDeposits.at(count) = closingBalance;
 			yrEndEarnedInterest = 0.0;

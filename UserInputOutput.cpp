@@ -9,7 +9,6 @@
 #include <iostream>
 #include <format>
 #include <sstream>
-#include <array>
 #include <limits>
 
 std::unique_ptr<UserInput> UserInputOutput::getUserInput()

@@ -21,35 +21,43 @@ std::unique_ptr<UserInput> UserInputOutput::getUserInput()
 
     do
     {
-        printMessage("Initial Investment Amount:  ");
+        printMessage("Initial Investment Amount: ");
         std::getline(std::cin, input);
         removeCharsFromInput(input);
 
     } while(!validNumericInput(input, userInput->iniInvestAmount, 1.0, std::numeric_limits<double>::infinity()));
+    
+    std::cout << "\n";
 
     do
     {
-        printMessage("Monthly Deposit:  ");
+        printMessage("Monthly Deposit: ");
         std::getline(std::cin, input);
         removeCharsFromInput(input);
 
     }while(!validNumericInput(input, userInput->monthlyDeposit, 0.0, std::numeric_limits<double>::infinity()));
 
+    std::cout << "\n";
+
     do
     {
-        printMessage("Annual Interest:  ");
+        printMessage("Interest rate (Whole Number IE. 5)(min 1, max 12): ");
         std::getline(std::cin, input);
         removeCharsFromInput(input);
 
     }while(!validNumericInput(input, userInput->annualIntrestRate, 1, 12));
 
+    std::cout << "\n";
+
     do
     {
-        printMessage("Number of years in (months):  ");
+        printMessage("Length of Investment (months, min 12(1yr), max 120(10yr)): ");
         std::getline(std::cin, input);
         removeCharsFromInput(input);
 
     }while(!validNumericInput(input, userInput->months, 12, 120));
+
+    std::cout << "\n";
 
     return std::move(userInput);
 }

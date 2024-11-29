@@ -10,29 +10,46 @@
 #include <format>
 #include <sstream>
 #include <array>
+#include <limits>
 
 std::unique_ptr<UserInput> UserInputOutput::getUserInput()
 {
     auto userInput = std::unique_ptr<UserInput>(new UserInput);
     std::string input = "";
-    std::cout << std::format("{:*>{}}", "", 50) << std::endl << std::endl;
-    std::cout << std::format("{:*^{}}", " Data Input ", 50) << std::endl << std::endl;
+    std::cout << std::format("{:*>{}}", "", 100) << std::endl << std::endl;
+    std::cout << std::format("{:*^{}}", " Data Input ", 100) << std::endl << std::endl;
 
-    bool valid = true;
     do
     {
         printMessage("Initial Investment Amount:  ");
         std::getline(std::cin, input);
         removeCharsFromInput(input);
 
-    } while(!validNumericInput(input, userInput->iniInvestAmount));
+    } while(!validNumericInput(input, userInput->iniInvestAmount, 1.0, std::numeric_limits<double>::infinity()));
 
-    printMessage("Monthly Deposit:  ");
-    std::cin >> userInput->monthlyDeposit;
-    printMessage("Annual Interest:  ");
-    std::cin >> userInput->annualIntrestRate;
-    printMessage("Number of years in (months):  ");
-    std::cin >> userInput->months;
+    do
+    {
+        printMessage("Monthly Deposit:  ");
+        std::getline(std::cin, input);
+        removeCharsFromInput(input);
+
+    }while(!validNumericInput(input, userInput->monthlyDeposit, 0.0, std::numeric_limits<double>::infinity()));
+
+    do
+    {
+        printMessage("Annual Interest:  ");
+        std::getline(std::cin, input);
+        removeCharsFromInput(input);
+
+    }while(!validNumericInput(input, userInput->annualIntrestRate, 1, 12));
+
+    do
+    {
+        printMessage("Number of years in (months):  ");
+        std::getline(std::cin, input);
+        removeCharsFromInput(input);
+
+    }while(!validNumericInput(input, userInput->months, 12, 120));
 
     return std::move(userInput);
 }
@@ -64,7 +81,8 @@ const bool UserInputOutput::runAgain()
     return response == 'y';
 }
 
-bool UserInputOutput::validNumericInput(const std::string& input, double& OUTInput)
+template<typename Input, typename Value>
+inline bool UserInputOutput::validNumericInput(const std::string& input, Input& OUTInput, Value min, Value max)
 {
     //if the user only entered punctuation and the string is empty return false...
     if (input.size() == 0)
@@ -79,7 +97,7 @@ bool UserInputOutput::validNumericInput(const std::string& input, double& OUTInp
 
     while (stream >> t)
     {
-        if (isdigit(t))
+        if (isdigit(t) || t == '.')
         {
             v += t;
         }
@@ -89,16 +107,25 @@ bool UserInputOutput::validNumericInput(const std::string& input, double& OUTInp
             return false;
         }
     }
-    OUTInput = std::stod(v);
-    return true;
+    Value temp = std::stod(v);
+    if (rangeCheck(temp, min, max))
+    {
+        OUTInput = std::stod(v);
+        return true;
+    }
+    else
+    {
+        printMessage("Invalid(Out of Range), Try Again!\n");
+        return false;
+    }
 }
 
 void UserInputOutput::removeCharsFromInput(std::string& input)
 {
     //for every non digit character remove it from the input...
-    for (int i = 0, len = input.size(); i < len; ++i)
+    for (size_t i = 0, len = input.size(); i < len; ++i)
     {
-        if (ispunct(input[i]))
+        if (ispunct(input[i]) && (input[i] != '.') && (input[i] != '-'))
         {
             input.erase(i--, 1);
             len = input.size();

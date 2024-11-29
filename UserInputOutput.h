@@ -31,9 +31,12 @@ protected:
 
 
 private:
+	template<typename Input, typename Value>
+	bool validNumericInput(const std::string& input, Input& OUTInput, Value min, Value max);
 	
-	bool validNumericInput(const std::string& input, double& OUTInput);
-	std::string askForValidInput(const std::string& message);
+	template<typename Value>
+	inline bool rangeCheck(Value value, Value min, Value max){ return (value >= min) && (value <= max); }
+
 	void removeCharsFromInput(std::string & input);
 
 	const void printTable(const std::string& tableName);

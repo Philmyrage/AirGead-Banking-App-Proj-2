@@ -18,12 +18,12 @@ public:
 	{
 		iniInvestAmount = 0;
 		monthlyDeposit = 0;
-		annualIntrestRate = 0;
+		monthlyRate = 0;
 		months = 0;
 	}
 	CompoundInvestmentModel(double iniInvestAmount, double monthlyDeposit, double annualIntrestRate, int months)
 	{
-		this->annualIntrestRate = (annualIntrestRate / 100) / 12;
+		this->monthlyRate = annualIntrestRate / 12.0 / 100.0;
 		this->iniInvestAmount = iniInvestAmount;
 		this->monthlyDeposit = monthlyDeposit;
 		this->months = months;
@@ -37,7 +37,7 @@ public:
 	}
 	CompoundInvestmentModel(std::unique_ptr<UserInput> input): input(std::move(input))
 	{
-		this->annualIntrestRate = (this->input->annualIntrestRate / 100) / 12;
+		this->monthlyRate = this->input->monthlyRate / 12.0 / 100.0;
 		this->iniInvestAmount = this->input->iniInvestAmount;
 		this->monthlyDeposit = this->input->monthlyDeposit;
 		this->months = this->input->months;
@@ -53,7 +53,7 @@ public:
 	//Getters/Setters
 	inline const double getIniinvestAmount(){return iniInvestAmount;}
 	inline const double getMonthlyDepost(){return monthlyDeposit;}
-	inline const double getAnnualIntrestRate(){return annualIntrestRate;}
+	inline const double getAnnualIntrestRate(){return monthlyRate;}
 	inline const int getNumOfYears(){return months / 12;}
 
 	inline const double getEndYearBalance(int year){return yearEndBalanceAmounts.at(year) + endEarnedInterestAmounts.at(year);}
@@ -67,7 +67,7 @@ public:
 
 	inline void setIniInvestAmount(double amount){iniInvestAmount = amount;}
 	inline void setMonthlyDeposit(double amount){monthlyDeposit = amount;}
-	inline void setAnnualIntrestRate(double amount){annualIntrestRate = amount;}
+	inline void setAnnualIntrestRate(double amount){monthlyRate = amount;}
 	inline void setNumOfYears(unsigned amount){months = amount;}
 
 	//this function performs the necessary calculations for the investment model.
@@ -81,7 +81,7 @@ private:
 	//User Input Variables.
 	double iniInvestAmount;
 	double monthlyDeposit;
-	double annualIntrestRate;
+	double monthlyRate;
 	int months;
 
 	std::unique_ptr<UserInput> input = nullptr;
@@ -101,5 +101,6 @@ private:
 
 	void calculateClosingBalance();
 
+	void calculateWithDepositTest();
 };
 

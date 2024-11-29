@@ -6,11 +6,38 @@
 #include "CompoundInvestmentModel.h"
 
 #include <iostream>
+#include <cmath>
 
 void CompoundInvestmentModel::calculateInvestment()
 {
-	calculateWithDeposit();
+	//calculateWithDeposit();
 	calculateWithoutDeposit();
+	calculateWithDepositTest();
+}
+
+void CompoundInvestmentModel::calculateWithDepositTest()
+{
+	int count = 1;
+	double total = iniInvestAmount;
+	double interestForMonth = 0.0;
+	
+	double yrEndEarnedInterest = 0.0;
+
+	if (getNumOfYears() <= 0) return;
+
+	for (int i = 1; i <= getNumOfYears(); ++i)
+	{
+		for (int k = 1; k <= 12; k++)
+		{
+			total += monthlyDeposit;
+			interestForMonth = total * monthlyRate;
+			total += interestForMonth;
+			yrEndEarnedInterest += interestForMonth;
+		}
+		yearEndBalanceAmounts.at(i - 1) = total;
+		endEarnedInterestAmounts.at(i - 1) = yrEndEarnedInterest;
+		yrEndEarnedInterest = 0.0;
+	}
 }
 
 void CompoundInvestmentModel::calculateWithDeposit()
@@ -25,13 +52,13 @@ void CompoundInvestmentModel::calculateWithDeposit()
 	for (int i = 1; i <= months; ++i)
 	{
 		// add the deposit
-		total = (total + monthlyDeposit);
+		total += monthlyDeposit;
 		//calculate the interest
-		interest = (total * annualIntrestRate);
+		total *= (1 + monthlyRate);
+
+		interest = (total * monthlyRate);
 		yrEndEarnedInterest += interest;
 
-		//add the total and interest
-		closingBalance = total + interest;
 		//for every year we add those values to a vector to print to our user.
 		if (i % 12 == 0)
 		{
@@ -42,8 +69,8 @@ void CompoundInvestmentModel::calculateWithDeposit()
 			count++;
 		}
 
-		//total is equal to closing balance of the previous year....
-		total = closingBalance;
+		//add the total and interest
+		closingBalance = total + interest;
 	}
 }
 
@@ -59,7 +86,7 @@ void CompoundInvestmentModel::calculateWithoutDeposit()
 	//for every month we add the deposit and calculate the interest.
 	for (int i = 1; i <= months; ++i)
 	{
-		interest = (total * annualIntrestRate);
+		interest = (total * monthlyRate);
 		yrEndEarnedInterest += interest;
 		closingBalance = (total + interest);
 
@@ -84,3 +111,4 @@ void CompoundInvestmentModel::calculateClosingBalance()
 {
 	
 }
+

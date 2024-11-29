@@ -44,7 +44,7 @@ std::unique_ptr<UserInput> UserInputOutput::getUserInput()
         std::getline(std::cin, input);
         removeCharsFromInput(input);
 
-    }while(!validNumericInput(input, userInput->annualIntrestRate, 1, 12));
+    }while(!validNumericInput(input, userInput->monthlyRate, 1, 12));
 
     std::cout << "\n";
 

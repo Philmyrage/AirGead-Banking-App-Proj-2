@@ -69,13 +69,13 @@ void UserInputOutput::printInvestmentReport(std::unique_ptr<CompoundInvestmentMo
     std::vector<double> yrEndBalanceWOutDepo = investmentModel->getEndBalanceWithoutDeposits();
     std::vector<double> yrEndInterestWOutDepo = investmentModel->getEndEarnedInterestAmtWoutDeposits();
     printTable(" Balance and Interest Without Additional Monthly Deposits ");
-    printReport(yrEndBalanceWOutDepo, yrEndInterestWOutDepo, numOfYears);
+    printReport(yrEndBalanceWOutDepo, yrEndInterestWOutDepo, closingBalancesNoDepo, numOfYears);
 
     std::vector<double> closingBalancesWithDepo = investmentModel->getClosingBalancesWithdeposits();
     std::vector<double> yrEndBalanceWithDepo = investmentModel->getYearEndBalanceAmounts();
     std::vector<double> yrEndInterestWithDepo = investmentModel->getEarnedIntrestAmounts();
     printTable(" Balance and Interest With Additional Monthly Deposits ");
-    printReport(yrEndBalanceWithDepo, yrEndInterestWithDepo, numOfYears);
+    printReport(yrEndBalanceWithDepo, yrEndInterestWithDepo, closingBalancesWithDepo, numOfYears);
 
 
 }
@@ -148,26 +148,30 @@ const void UserInputOutput::printTable(const std::string& tableName)
     std::cout << std::format("{:=>{}}", "", 100) << std::endl;
 
     //These lines are dividing the default space of 100 between them since they are on the same line...
-    std::cout << std::format("{: <{}}", "Year", 33);
-    std::cout << std::format("{: ^{}}", "Year End Balance", 33);
-    std::cout << std::format("{: >{}}", "Year End Earned Interest", 34) << std::endl;
+    std::cout << std::format("{: <{}}", "Year", 25);
+    std::cout << std::format("{: ^{}}", "Year End Balance", 25);
+    std::cout << std::format("{: ^{}}", "Year End Earned Interest", 25);
+    std::cout << std::format("{: >{}}", "Closing Balance", 25) << std::endl;
     std::cout << std::format("{:->{}}", "", 100) << std::endl << std::endl;
 }
 
-const void UserInputOutput::printReport(const std::vector<double>& yearEndBalances, const std::vector<double>& yearEndInterest, int numOfYears)
+const void UserInputOutput::printReport(const std::vector<double>& yearEndBalances, const std::vector<double>& yearEndInterest, const std::vector<double>& closingBalances, int numOfYears)
 {
     //Loop the number of years adding rows with the associated data...
     for (int i = 0; i < numOfYears; i++)
     {
 
         //Year
-        std::cout << std::format("{: <{}}", i + 1, 33);
+        std::cout << std::format("{: <{}}", i + 1, 25);
 
         //Year End Balance
-        std::cout << std::format("{: ^{}}", std::format("{}{:.2f}", "$", yearEndBalances.at(i)), 33);
+        std::cout << std::format("{: ^{}}", std::format("{}{:.2f}", "$", yearEndBalances.at(i)), 25);
 
         //Year End Earned Interest
-        std::cout << std::format("{: >{}}", std::format("{}{:.2f}", "$", yearEndInterest.at(i)), 34) << std::endl;
+        std::cout << std::format("{: ^{}}", std::format("{}{:.2f}", "$", yearEndInterest.at(i)), 25);
+
+        //Year Closing Balance
+        std::cout << std::format("{: >{}}", std::format("{}{:.2f}", "$", closingBalances.at(i)), 25) << std::endl;
 
         //once row is complete start new row.
         std::cout << std::format("{:->{}}", "", 100);

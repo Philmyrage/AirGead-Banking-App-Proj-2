@@ -49,6 +49,6 @@ private:
 	const void printTable(const std::string& tableName);
 
 	//prints the rows of the table with the given data.
-	const void printReport(const std::vector<double>& yearEndBalances, const std::vector<double>& yearEndInterest, int numOfYears);
+	const void printReport(const std::vector<double>& yearEndBalances, const std::vector<double>& yearEndInterest, const std::vector<double>& closingBalances, int numOfYears);
 };
 

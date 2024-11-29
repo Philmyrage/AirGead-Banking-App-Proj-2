@@ -97,7 +97,7 @@ inline bool UserInputOutput::validNumericInput(const std::string& input, Input& 
 
     while (stream >> t)
     {
-        if (isdigit(t) || t == '.')
+        if (isdigit(t) || t == '.' || t == '-')
         {
             v += t;
         }

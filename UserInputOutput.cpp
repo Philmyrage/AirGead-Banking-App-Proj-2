@@ -92,11 +92,14 @@ const void UserInputOutput::printReport(const std::vector<double>& yearEndBalanc
         std::cout << std::format("{: ^{}}", std::format("{}{:.2f}", "$", yearEndInterest.at(i)), 25);
 
         //Year Closing Balance
-        std::cout << std::format("{: >{}}", std::format("{}{:.2f}", "$", closingBalances.at(i)), 25);
+        std::cout << std::format("{: >{}}", std::format("{}{:.2f}", "$", closingBalances.at(i)), 25) << std::endl;
 
         //once row is complete start new row.
-        std::cout << std::endl << std::endl;
+        std::cout << std::format("{:->{}}", "", 100);
+        std::cout << std::endl;
     }
+
+    std::cout << std::format("{:=>{}}", "", 100) << std::endl;
 }
 
 const void UserInputOutput::printMessage(const std::string& message)

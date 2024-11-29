@@ -32,7 +32,9 @@ protected:
 
 private:
 	
-	const bool validInput(const std::string& input);
+	bool validNumericInput(const std::string& input, double& OUTInput);
+	std::string askForValidInput(const std::string& message);
+	void removeCharsFromInput(std::string & input);
 
 	const void printTable(const std::string& tableName);
 

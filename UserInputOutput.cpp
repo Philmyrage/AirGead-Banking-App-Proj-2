@@ -8,16 +8,25 @@
 
 #include <iostream>
 #include <format>
+#include <sstream>
+#include <array>
 
 std::unique_ptr<UserInput> UserInputOutput::getUserInput()
 {
     auto userInput = std::unique_ptr<UserInput>(new UserInput);
-
+    std::string input = "";
     std::cout << std::format("{:*>{}}", "", 50) << std::endl << std::endl;
     std::cout << std::format("{:*^{}}", " Data Input ", 50) << std::endl << std::endl;
 
-    printMessage("Initial Investment Amount:  ");
-    std::cin >> userInput->iniInvestAmount;
+    bool valid = true;
+    do
+    {
+        printMessage("Initial Investment Amount:  ");
+        std::getline(std::cin, input);
+        removeCharsFromInput(input);
+
+    } while(!validNumericInput(input, userInput->iniInvestAmount));
+
     printMessage("Monthly Deposit:  ");
     std::cin >> userInput->monthlyDeposit;
     printMessage("Annual Interest:  ");
@@ -55,10 +64,46 @@ const bool UserInputOutput::runAgain()
     return response == 'y';
 }
 
-const bool UserInputOutput::validInput(const std::string& input)
+bool UserInputOutput::validNumericInput(const std::string& input, double& OUTInput)
 {
+    //if the user only entered punctuation and the string is empty return false...
+    if (input.size() == 0)
+    {
+        printMessage("Invalid, Try Again!\n");
+        return false;
+    }
 
-    return false;
+    char t;
+    std::string v = "";
+    std::stringstream stream(input);
+
+    while (stream >> t)
+    {
+        if (isdigit(t))
+        {
+            v += t;
+        }
+        else
+        {
+            printMessage("Invalid, Try Again!\n");
+            return false;
+        }
+    }
+    OUTInput = std::stod(v);
+    return true;
+}
+
+void UserInputOutput::removeCharsFromInput(std::string& input)
+{
+    //for every non digit character remove it from the input...
+    for (int i = 0, len = input.size(); i < len; ++i)
+    {
+        if (ispunct(input[i]))
+        {
+            input.erase(i--, 1);
+            len = input.size();
+        }
+    }
 }
 
 const void UserInputOutput::printTable(const std::string& tableName)

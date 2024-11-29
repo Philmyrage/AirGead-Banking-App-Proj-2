@@ -41,7 +41,7 @@ std::unique_ptr<UserInput> UserInputOutput::getUserInput()
 
     do
     {
-        printMessage("Interest rate (Whole Number IE. 5)(min 1, max 12): ");
+        printMessage("Rate (Example: 5.5)(min 1, max 12): ");
         std::getline(std::cin, input);
         removeCharsFromInput(input);
 

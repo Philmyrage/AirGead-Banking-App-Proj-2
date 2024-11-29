@@ -38,6 +38,7 @@ void CompoundInvestmentModel::calculateWithDepositTest()
 		}
 		yearEndBalanceAmounts.at(i - 1) = total;
 		endEarnedInterestAmounts.at(i - 1) = yrEndEarnedInterest;
+		yearlyClosingBalancesWithDeposits.at(i - 1) = total + interestForMonth;
 		yrEndEarnedInterest = 0.0;
 	}
 }

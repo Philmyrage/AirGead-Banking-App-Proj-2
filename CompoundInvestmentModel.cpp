@@ -66,6 +66,7 @@ void CompoundInvestmentModel::calculateWithoutDeposit()
 		//for every year we add those values to a vector to print to our user.
 		if (i % 12 == 0)
 		{
+			//if its not the first year get the previous years balance.
 			double t = (count == 0) ? iniInvestAmount : total - yrEndEarnedInterest;
 			yearEndBalanceWithOutDeposits.at(count) = t;
 			endEarnedInterestAmtWoutDeposits.at(count) = yrEndEarnedInterest;
